@@ -19,8 +19,9 @@ dev = [
   "mypy",
   "pytest-mock",
   "mujoco",
-  "reachy-mini[mujoco]"
-  ]
+  "reachy-mini[mujoco]",
+  "scipy-stubs"
+   ]
 
 [project.scripts]
 minimal-demo = "demos.minimal:main"

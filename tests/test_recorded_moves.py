@@ -1,4 +1,3 @@
-
 import sys
 from pathlib import Path
 
@@ -17,7 +16,9 @@ def test_cli_main_default():
         mock_parser.return_value.parse_args.return_value = mock_args
         with patch("demos.recorded_moves.main") as mock_main:
             cli_main()
-            mock_main.assert_called_once_with("pollen-robotics/reachy-mini-dances-library")
+            mock_main.assert_called_once_with(
+                "pollen-robotics/reachy-mini-dances-library"
+            )
 
 
 def test_cli_main_dataset():
@@ -39,12 +40,14 @@ def test_main():
     mock_move.description = "A test move"
     mock_recorded_moves.get.side_effect = [mock_move, KeyboardInterrupt]
 
-
     with patch("demos.recorded_moves.ReachyMini", return_value=mock_reachy):
-        with patch("demos.recorded_moves.RecordedMoves", return_value=mock_recorded_moves):
+        with patch(
+            "demos.recorded_moves.RecordedMoves", return_value=mock_recorded_moves
+        ):
             main("dummy_path")
-
 
     mock_recorded_moves.list_moves.assert_called_once()
     mock_recorded_moves.get.assert_any_call("move1")
-    mock_reachy.__enter__.return_value.play_move.assert_called_once_with(mock_move, initial_goto_duration=1.0)
+    mock_reachy.__enter__.return_value.play_move.assert_called_once_with(
+        mock_move, initial_goto_duration=1.0
+    )

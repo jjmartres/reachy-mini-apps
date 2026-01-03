@@ -33,7 +33,9 @@ def main():
 
 def cli_main():
     parser = argparse.ArgumentParser()
-    parser.description = "A simple demo that makes the robot's head and antennas oscillate."
+    parser.description = (
+        "A simple demo that makes the robot's head and antennas oscillate."
+    )
     main()
 
 

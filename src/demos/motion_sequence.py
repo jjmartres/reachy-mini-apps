@@ -104,10 +104,14 @@ def main():
         except KeyboardInterrupt:
             pass
 
+
 def cli_main():
     parser = argparse.ArgumentParser()
-    parser.description = "A more complex demo that showcases a sequence of different motions."
+    parser.description = (
+        "A more complex demo that showcases a sequence of different motions."
+    )
     main()
+
 
 if __name__ == "__main__":
     cli_main()
