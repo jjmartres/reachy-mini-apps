@@ -1,0 +1,41 @@
+[project]
+name = "reachy-mini-apps"
+version = "0.1.0"
+description = "Reachy Mini Apps is a collection of mini applications for the Reachy robot."
+authors = [{ name = "Jean-Jacques Martres", email = "jjmartres@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "reachy-mini",
+    "numpy"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "ruff",
+  "black",
+  "mypy",
+  "pytest-mock",
+  "mujoco",
+  "reachy-mini[mujoco]"
+  ]
+
+[project.scripts]
+minimal-demo = "demos.minimal:main"
+motion-sequence = "demos.motion_sequence:main"
+# Use with -l dance or emotions
+recorded-moves = "demos.recorded_moves:cli_main"
+
+[tool.ruff]
+line-length = 88
+
+[tool.black]
+line-length = 88
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:"]

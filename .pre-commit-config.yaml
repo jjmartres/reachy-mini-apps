@@ -1,0 +1,16 @@
+default_stages: [pre-commit, pre-push]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: make-test
+        name: make test
+        entry: make test
+        language: system
+        types: [python]
+        pass_filenames: false
