@@ -1,4 +1,15 @@
-"""Reachy Mini Motion Sequence Example."""
+"""Demonstrates a complex sequence of motions with the Reachy Mini.
+
+This script guides the robot through a pre-defined choreography involving
+various head movements (roll, pitch, yaw), translations, and antenna gestures.
+It showcases the robot'''s expressiveness and the SDK's capabilities for
+creating more intricate behaviors.
+
+Example:
+    To run this demo:
+
+    $ uv run motion-sequence
+"""
 
 import time
 import argparse
@@ -8,8 +19,8 @@ from reachy_mini import ReachyMini
 from scipy.spatial.transform import Rotation as R
 
 
-def main():
-    """A more complex demo that showcases a sequence of different motions."""
+def main() -> None:
+    """Connects to Reachy and runs through a pre-defined motion sequence."""
     with ReachyMini(media_backend="no_media") as reachy_mini:
         reachy_mini.goto_target(np.eye(4), antennas=[0.0, 0.0], duration=1.0)
         try:
@@ -102,10 +113,11 @@ def main():
                 time.sleep(2)
 
         except KeyboardInterrupt:
-            pass
+            print("\nDemo interrupted by user.")
 
 
 def cli_main():
+    """Parses command-line arguments and runs the main demo."""
     parser = argparse.ArgumentParser()
     parser.description = (
         "A more complex demo that showcases a sequence of different motions."

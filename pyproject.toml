@@ -5,10 +5,7 @@ description = "Reachy Mini Apps is a collection of mini applications for the Rea
 authors = [{ name = "Jean-Jacques Martres", email = "jjmartres@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "reachy-mini",
-    "numpy"
-]
+dependencies = ["reachy-mini", "numpy"]
 
 [project.optional-dependencies]
 dev = [
@@ -20,14 +17,16 @@ dev = [
   "pytest-mock",
   "mujoco",
   "reachy-mini[mujoco]",
-  "scipy-stubs"
-   ]
+  "scipy-stubs",
+]
 
 [project.scripts]
 minimal-demo = "demos.minimal:main"
 motion-sequence = "demos.motion_sequence:main"
-# Use with -l dance or emotions
 recorded-moves = "demos.recorded_moves:cli_main"
+play-move-set = "demos.play_move_set:cli_main"
+move-head = "demos.move_head:main"
+
 
 [tool.ruff]
 line-length = 88

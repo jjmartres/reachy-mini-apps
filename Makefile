@@ -6,7 +6,7 @@ help: ## Display this help.
 
 .PHONY: setup
 setup: ## Setup the development environment
-	@uv venv --clear
+	@uv venv -p $$(asdf which python) --clear
 	@uv sync --all-extras
 	@git lfs install
 

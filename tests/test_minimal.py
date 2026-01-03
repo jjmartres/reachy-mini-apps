@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 
 import numpy as np
 
-from demos.minimal import main
+from demos.minimal import main, cli_main
 
 
 def test_main():
@@ -50,3 +50,10 @@ def test_main():
             head=mock_create_head_pose.return_value,
             antennas=[antennas_offset, antennas_offset],
         )
+
+
+@patch("demos.minimal.main")
+def test_cli_main(mock_main: MagicMock):
+    """Tests that cli_main calls the main function."""
+    cli_main()
+    mock_main.assert_called_once()

@@ -1,8 +1,12 @@
-"""Demonstrate and play all available moves from a dataset for Reachy Mini.
+"""Plays all available moves from a dataset for the Reachy Mini robot.
 
-Run :
+This script connects to the robot, loads a dataset of recorded moves from
+the Hugging Face Hub, and plays them all in a continuous loop.
 
-python3 recorded_moves_example.py -l [dance, emotions]
+Example:
+    To play the '''dance''' library:
+
+    $ uv run recorded-moves -l dance
 """
 
 import argparse
@@ -18,7 +22,11 @@ LIBRARY_DATASETS = {
 
 
 def main(dataset_path: str) -> None:
-    """Connect to Reachy and run the main demonstration loop."""
+    """Connects to Reachy and runs the main demonstration loop.
+
+    Args:
+        dataset_path: The ID of a Hugging Face dataset repository.
+    """
     recorded_moves = RecordedMoves(dataset_path)
 
     print("Connecting to Reachy Mini...")
@@ -32,10 +40,11 @@ def main(dataset_path: str) -> None:
                     reachy.play_move(move, initial_goto_duration=1.0)
 
         except KeyboardInterrupt:
-            print("\n Sequence interrupted by user. Shutting down.")
+            print("\nSequence interrupted by user. Shutting down.")
 
 
 def cli_main():
+    """Parses command-line arguments and runs the main demo."""
     parser = argparse.ArgumentParser(
         description="Demonstrate and play all available dance moves for Reachy Mini."
     )

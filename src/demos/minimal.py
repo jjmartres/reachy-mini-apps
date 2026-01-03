@@ -1,3 +1,15 @@
+"""A minimal demonstration of the Reachy Mini SDK's capabilities.
+
+This script connects to the robot and performs a simple, continuous
+oscillation of its head (pitch) and antennas. It's a great way to verify
+that the connection to the robot is working correctly.
+
+Example:
+    To run this demo:
+
+    $ uv run minimal-demo
+"""
+
 import time
 import argparse
 
@@ -6,8 +18,8 @@ from reachy_mini import ReachyMini
 from reachy_mini.utils import create_head_pose
 
 
-def main():
-    """A simple demo that makes the robot's head and antennas oscillate."""
+def main() -> None:
+    """Connects to Reachy and performs a head and antenna oscillation loop."""
     with ReachyMini(media_backend="no_media") as mini:
         mini.goto_target(create_head_pose(), antennas=[0.0, 0.0], duration=1.0)
         try:
@@ -28,10 +40,11 @@ def main():
                     head=head_pose, antennas=[antennas_offset, antennas_offset]
                 )
         except KeyboardInterrupt:
-            pass
+            print("\nDemo interrupted by user.")
 
 
 def cli_main():
+    """Parses command-line arguments and runs the main demo."""
     parser = argparse.ArgumentParser()
     parser.description = (
         "A simple demo that makes the robot's head and antennas oscillate."
@@ -41,7 +54,3 @@ def cli_main():
 
 if __name__ == "__main__":
     cli_main()
-
-
-if __name__ == "__main__":
-    main()

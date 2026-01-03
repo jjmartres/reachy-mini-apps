@@ -26,16 +26,6 @@
 
 This repository provides a collection of mini-applications that showcase the capabilities of the Reachy Mini robot. These demos are designed to be simple, easy to run, and fun to watch.
 
-## Demos
-
-Here are the available demos:
-
-| Demo | Description |
-| --- | --- |
-| **`minimal`** | A simple demo that makes the robot's head and antennas oscillate. This is a great way to check if your robot is properly connected and responding to commands. |
-| **`motion_sequence`** | A more complex demo that showcases a sequence of different motions. You'll see the robot perform a series of coordinated movements, demonstrating its expressiveness. |
-| **`recorded_moves`** | A demo that plays pre-recorded moves from a dataset. You can specify a dataset to play, allowing you to create and share your own choreographies. |
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -58,28 +48,78 @@ To set up the development environment, follow these steps:
     ```
     This command will install the project in editable mode, which is useful for development.
 
-## Usage
+## Available Demos
 
-To run the demos, use the `uv run` command followed by the demo name.
+To run the demos, use the `uv run <demo-name>` command. You can add `-- --help` to any command to see its specific options.
 
--   **Run a demo**:
-    ```bash
-    uv run <demo-name>
-    ```
-    Replace `<demo-name>` with the name of the demo you want to run (e.g., `minimal`, `motion_sequence`, `recorded-moves`). For example, to run the `minimal` demo, use:
-    ```bash
-    uv run minimal
-    ```
+---
 
--   **Get help for a demo**:
-    ```bash
-    uv run <demo-name> -- --help
-    ```
+### Minimal Demo
 
--   **Run the `recorded_moves` demo with a custom dataset**:
-    ```bash
-    uv run recorded-moves --dataset path/to/your/dataset.npz
-    ```
+A simple demo that makes the robot's head and antennas oscillate. This is a great way to check if your robot is properly connected and responding to commands.
+
+**Usage:**
+```bash
+uv run minimal-demo
+```
+
+---
+
+### Motion Sequence
+
+A more complex demo that showcases a sequence of different motions, including yaw, pitch, roll, and antenna movements.
+
+**Usage:**
+```bash
+uv run motion-sequence
+```
+
+---
+
+### Move Head
+
+A simple demo that makes the robot's head draw a circle.
+
+**Usage:**
+```bash
+uv run move-head
+```
+
+---
+
+### All Recorded Moves
+
+Plays all available moves from a dataset in a continuous loop.
+
+**Usage:**
+```bash
+uv run recorded-moves [FLAGS]
+```
+
+**Flags:**
+*   `--library {dance,emotions}`: Choose a built-in Hugging Face library (default: `dance`).
+*   `--dataset PATH`: Specify a path to a local or Hugging Face dataset to override the library choice.
+
+---
+
+### Play a Set of Moves
+
+Plays a specific, ordered set of moves from a local dataset once and then exits.
+
+**Usage:**
+```bash
+uv run play-move-set --moves <MOVE_NAME_1> <MOVE_NAME_2> ... [FLAGS]
+```
+
+**Example:**
+```bash
+uv run play-move-set --moves simple_nod yeah_nod --library dance
+```
+
+**Flags:**
+*   `--moves [NAME ...]`: (Required) A space-separated list of move names to play in sequence.
+*   `--library {dance,emotions}`: Choose a built-in local library (default: `dance`).
+*   `--dataset PATH`: Specify a path to a custom local or Hugging Face dataset.
 
 ## Development
 
